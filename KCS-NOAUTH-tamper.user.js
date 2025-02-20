@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name        Krunker Cheating Software 0.8.0
+// @name        KCS 0.8.0.1
 // @namespace    http://tampermonkey.net/
-// @version      0.8.0
-// @description  Enhanced Krunker Cheat Script (v0.8.0) with AimBot, AimAssist, ESP, High Jump, FPS Boost, Speed Boost, Auto Shoot, Auto Jump and Recoil Compensation
+// @version      0.8.0.1
+// @description  Enhanced Krunker Cheat Script (v0.8.0.1) with Aimbot, AimAssist, ESP, High Jump, FPS Boost, Speed Boost, Auto Shoot, Auto Jump and Recoil
 // @match        krunker.io/*
 // @match        browserfps.com/*
 // @exclude      *://krunker.io/social*
@@ -18,7 +18,7 @@
 (function() {
     'use strict';
 
-    /************* CSS Styles *************/
+    /************* CSS *************/
     const style = document.createElement('style');
     style.innerHTML = `
     .msg {
@@ -45,7 +45,7 @@
         z-index: 9999;
         display: flex;
         flex-direction: column;
-        font-family: Arial, sans-serif;
+        font-family: Arial, sans-serif; /* for some reason krunker uses arial and replaces it later*/
         font-size: 14px;
         color:#fff;
         width: 250px;
@@ -103,10 +103,10 @@
     `;
     document.head.appendChild(style);
 
-    /************* Common Variables and Functions *************/
+    /************* commons and auth stuff *************/
 
     const COOKIE_NAME = "krunker_access_auth";
-    const COOKIE_VALID_DAYS = 365;
+    const COOKIE_VALID_DAYS = 365; /* CHANGE THIS IN PRODUCTION BUILD */
 
     function setCookie(name, value, days) {
         const date = new Date();
@@ -146,7 +146,7 @@
         return;
     }
 
-    console.log("KCS v0.8.0 is loaded.");
+    console.log("KCS v0.8.0.1 is loaded.");
 
     const THREE = window.THREE;
     delete window.THREE;
@@ -431,7 +431,7 @@
         }
     }
 
-    // FPS Boost
+    // FPS Boost - anti-lag
     let fpsBoostActive = false;
     function enableFPSBoost(){
         console.log("FPS Boost enabled");
@@ -643,7 +643,7 @@
         const guiEl = fromHtml(`
         <div class="zui">
             <div class="zui-header">
-                Krunker Cheating Software v.0.8.0
+                Krunker Cheating Software v.0.8.0.1
                 <span class="zui-item-value">+</span>
             </div>
             <div class="zui-content">
@@ -705,7 +705,7 @@
                     </div>
                 </div>
                 <div class="zui-item text">
-                    <span>Dev: wi1lliott8411</span>
+                    <span>Dev: solidwild</span>
                 </div>
             </div>
         </div>
@@ -816,7 +816,7 @@
                 if(value) { enablekrunkerhardcore(); } else { disablekrunkerhardcore(); }
                 break;
             default:
-                console.log(`No action for Add-On setting: ${settingName}`);
+                console.log(`No action for setting: ${settingName}`);
         }
     }
 
